@@ -1,0 +1,35 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: self-hosted
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: python3 -c 'import os, json; print("matrix=" + json.dumps([f"envs/shared/{d}" for d in os.listdir("envs/shared") if os.path.isfile(f"envs/shared/{d}/main.tf")]))' >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: discover
+    runs-on: self-hosted
+    strategy:
+      fail-fast: false
+      matrix:
+        dir: ${{ fromJson(needs.discover.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.dir }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: terraform init
+
+      - run: terraform apply -auto-approve
