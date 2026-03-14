@@ -1,0 +1,776 @@
+{
+  "version": 4,
+  "terraform_version": "1.10.5",
+  "serial": 12,
+  "lineage": "906af3c6-b304-eb3d-57e9-d34b5129e53e",
+  "outputs": {
+    "vm_ids": {
+      "value": [
+        810,
+        811,
+        812
+      ],
+      "type": [
+        "tuple",
+        [
+          "number",
+          "number",
+          "number"
+        ]
+      ]
+    },
+    "vm_ips": {
+      "value": [
+        "192.168.1.24",
+        "192.168.1.7",
+        "192.168.1.206"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string",
+          "string"
+        ]
+      ]
+    },
+    "vm_names": {
+      "value": [
+        "microk8s-node-1",
+        "microk8s-node-2",
+        "microk8s-node-3"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string",
+          "string"
+        ]
+      ]
+    }
+  },
+  "resources": [
+    {
+      "module": "module.microk8s-node-1",
+      "mode": "managed",
+      "type": "proxmox_vm_qemu",
+      "name": "vm-instance",
+      "provider": "module.microk8s-node-1.provider[\"registry.terraform.io/telmate/proxmox\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "additional_wait": 5,
+            "agent": 1,
+            "agent_timeout": null,
+            "args": "",
+            "automatic_reboot": true,
+            "balloon": 0,
+            "bios": "seabios",
+            "boot": "order=scsi0",
+            "bootdisk": "",
+            "ci_wait": null,
+            "cicustom": null,
+            "cipassword": "4355",
+            "ciupgrade": false,
+            "ciuser": "nekoneki",
+            "clone": "ubuntu-20.04-template",
+            "clone_wait": 10,
+            "cores": 2,
+            "cpu": "host",
+            "default_ipv4_address": "192.168.1.24",
+            "default_ipv6_address": "",
+            "define_connection_info": true,
+            "desc": "microk8s-node-1",
+            "disk": [],
+            "disks": [
+              {
+                "ide": [
+                  {
+                    "ide0": [],
+                    "ide1": [],
+                    "ide2": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [
+                          {
+                            "storage": "local-lvm"
+                          }
+                        ],
+                        "disk": [],
+                        "passthrough": []
+                      }
+                    ],
+                    "ide3": []
+                  }
+                ],
+                "sata": [],
+                "scsi": [
+                  {
+                    "scsi0": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [],
+                        "disk": [
+                          {
+                            "asyncio": "",
+                            "backup": true,
+                            "cache": "writeback",
+                            "discard": false,
+                            "emulatessd": false,
+                            "format": "raw",
+                            "id": 0,
+                            "iops_r_burst": 0,
+                            "iops_r_burst_length": 0,
+                            "iops_r_concurrent": 0,
+                            "iops_wr_burst": 0,
+                            "iops_wr_burst_length": 0,
+                            "iops_wr_concurrent": 0,
+                            "iothread": false,
+                            "linked_disk_id": -1,
+                            "mbps_r_burst": 0,
+                            "mbps_r_concurrent": 0,
+                            "mbps_wr_burst": 0,
+                            "mbps_wr_concurrent": 0,
+                            "readonly": false,
+                            "replicate": true,
+                            "serial": "",
+                            "size": "32G",
+                            "storage": "local-lvm",
+                            "wwn": ""
+                          }
+                        ],
+                        "passthrough": []
+                      }
+                    ],
+                    "scsi1": [],
+                    "scsi10": [],
+                    "scsi11": [],
+                    "scsi12": [],
+                    "scsi13": [],
+                    "scsi14": [],
+                    "scsi15": [],
+                    "scsi16": [],
+                    "scsi17": [],
+                    "scsi18": [],
+                    "scsi19": [],
+                    "scsi2": [],
+                    "scsi20": [],
+                    "scsi21": [],
+                    "scsi22": [],
+                    "scsi23": [],
+                    "scsi24": [],
+                    "scsi25": [],
+                    "scsi26": [],
+                    "scsi27": [],
+                    "scsi28": [],
+                    "scsi29": [],
+                    "scsi3": [],
+                    "scsi30": [],
+                    "scsi4": [],
+                    "scsi5": [],
+                    "scsi6": [],
+                    "scsi7": [],
+                    "scsi8": [],
+                    "scsi9": []
+                  }
+                ],
+                "virtio": []
+              }
+            ],
+            "efidisk": [],
+            "force_create": false,
+            "force_recreate_on_change_of": null,
+            "full_clone": true,
+            "hagroup": "",
+            "hastate": "",
+            "hostpci": [],
+            "hotplug": "network,disk,usb",
+            "id": "machine-1/qemu/810",
+            "ipconfig0": "ip=dhcp",
+            "ipconfig1": null,
+            "ipconfig10": null,
+            "ipconfig11": null,
+            "ipconfig12": null,
+            "ipconfig13": null,
+            "ipconfig14": null,
+            "ipconfig15": null,
+            "ipconfig2": null,
+            "ipconfig3": null,
+            "ipconfig4": null,
+            "ipconfig5": null,
+            "ipconfig6": null,
+            "ipconfig7": null,
+            "ipconfig8": null,
+            "ipconfig9": null,
+            "kvm": true,
+            "linked_vmid": 0,
+            "machine": "",
+            "memory": 4096,
+            "name": "microk8s-node-1",
+            "nameserver": null,
+            "network": [
+              {
+                "bridge": "vmbr0",
+                "firewall": false,
+                "link_down": false,
+                "macaddr": "76:FA:8E:9F:95:95",
+                "model": "virtio",
+                "mtu": 0,
+                "queues": 0,
+                "rate": 0,
+                "tag": -1
+              }
+            ],
+            "numa": false,
+            "onboot": false,
+            "os_network_config": null,
+            "os_type": "cloud-init",
+            "pool": "",
+            "protection": false,
+            "pxe": null,
+            "qemu_os": "other",
+            "reboot_required": false,
+            "scsihw": "virtio-scsi-pci",
+            "searchdomain": null,
+            "serial": [
+              {
+                "id": 0,
+                "type": "socket"
+              }
+            ],
+            "skip_ipv4": false,
+            "skip_ipv6": false,
+            "smbios": [
+              {
+                "family": "",
+                "manufacturer": "",
+                "product": "",
+                "serial": "",
+                "sku": "",
+                "uuid": "1a1f9f48-bde3-45a2-9703-90117d573a21",
+                "version": ""
+              }
+            ],
+            "sockets": 1,
+            "ssh_forward_ip": null,
+            "ssh_host": "192.168.1.24",
+            "ssh_port": "22",
+            "ssh_private_key": null,
+            "ssh_user": null,
+            "sshkeys": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFX6KQ9N5ZMWOD4/pVfbyaPdVobcx0xBadMA2OhR/EbS nekoneki@nekonekis-MBP\n",
+            "startup": "",
+            "tablet": true,
+            "tags": "",
+            "target_node": "machine-1",
+            "target_nodes": null,
+            "timeouts": null,
+            "unused_disk": [],
+            "usb": [],
+            "vcpus": 0,
+            "vga": [],
+            "vm_state": "running",
+            "vmid": 810
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "cipassword"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "ssh_private_key"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWZhdWx0IjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "module": "module.microk8s-node-2",
+      "mode": "managed",
+      "type": "proxmox_vm_qemu",
+      "name": "vm-instance",
+      "provider": "module.microk8s-node-2.provider[\"registry.terraform.io/telmate/proxmox\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "additional_wait": 5,
+            "agent": 1,
+            "agent_timeout": null,
+            "args": "",
+            "automatic_reboot": true,
+            "balloon": 0,
+            "bios": "seabios",
+            "boot": "order=scsi0",
+            "bootdisk": "",
+            "ci_wait": null,
+            "cicustom": null,
+            "cipassword": "4355",
+            "ciupgrade": false,
+            "ciuser": "nekoneki",
+            "clone": "ubuntu-20.04-template",
+            "clone_wait": 10,
+            "cores": 2,
+            "cpu": "host",
+            "default_ipv4_address": "192.168.1.7",
+            "default_ipv6_address": "",
+            "define_connection_info": true,
+            "desc": "microk8s-node-2",
+            "disk": [],
+            "disks": [
+              {
+                "ide": [
+                  {
+                    "ide0": [],
+                    "ide1": [],
+                    "ide2": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [
+                          {
+                            "storage": "local-lvm"
+                          }
+                        ],
+                        "disk": [],
+                        "passthrough": []
+                      }
+                    ],
+                    "ide3": []
+                  }
+                ],
+                "sata": [],
+                "scsi": [
+                  {
+                    "scsi0": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [],
+                        "disk": [
+                          {
+                            "asyncio": "",
+                            "backup": true,
+                            "cache": "writeback",
+                            "discard": false,
+                            "emulatessd": false,
+                            "format": "raw",
+                            "id": 0,
+                            "iops_r_burst": 0,
+                            "iops_r_burst_length": 0,
+                            "iops_r_concurrent": 0,
+                            "iops_wr_burst": 0,
+                            "iops_wr_burst_length": 0,
+                            "iops_wr_concurrent": 0,
+                            "iothread": false,
+                            "linked_disk_id": -1,
+                            "mbps_r_burst": 0,
+                            "mbps_r_concurrent": 0,
+                            "mbps_wr_burst": 0,
+                            "mbps_wr_concurrent": 0,
+                            "readonly": false,
+                            "replicate": true,
+                            "serial": "",
+                            "size": "32G",
+                            "storage": "local-lvm",
+                            "wwn": ""
+                          }
+                        ],
+                        "passthrough": []
+                      }
+                    ],
+                    "scsi1": [],
+                    "scsi10": [],
+                    "scsi11": [],
+                    "scsi12": [],
+                    "scsi13": [],
+                    "scsi14": [],
+                    "scsi15": [],
+                    "scsi16": [],
+                    "scsi17": [],
+                    "scsi18": [],
+                    "scsi19": [],
+                    "scsi2": [],
+                    "scsi20": [],
+                    "scsi21": [],
+                    "scsi22": [],
+                    "scsi23": [],
+                    "scsi24": [],
+                    "scsi25": [],
+                    "scsi26": [],
+                    "scsi27": [],
+                    "scsi28": [],
+                    "scsi29": [],
+                    "scsi3": [],
+                    "scsi30": [],
+                    "scsi4": [],
+                    "scsi5": [],
+                    "scsi6": [],
+                    "scsi7": [],
+                    "scsi8": [],
+                    "scsi9": []
+                  }
+                ],
+                "virtio": []
+              }
+            ],
+            "efidisk": [],
+            "force_create": false,
+            "force_recreate_on_change_of": null,
+            "full_clone": true,
+            "hagroup": "",
+            "hastate": "",
+            "hostpci": [],
+            "hotplug": "network,disk,usb",
+            "id": "machine-1/qemu/811",
+            "ipconfig0": "ip=dhcp",
+            "ipconfig1": null,
+            "ipconfig10": null,
+            "ipconfig11": null,
+            "ipconfig12": null,
+            "ipconfig13": null,
+            "ipconfig14": null,
+            "ipconfig15": null,
+            "ipconfig2": null,
+            "ipconfig3": null,
+            "ipconfig4": null,
+            "ipconfig5": null,
+            "ipconfig6": null,
+            "ipconfig7": null,
+            "ipconfig8": null,
+            "ipconfig9": null,
+            "kvm": true,
+            "linked_vmid": 0,
+            "machine": "",
+            "memory": 4096,
+            "name": "microk8s-node-2",
+            "nameserver": null,
+            "network": [
+              {
+                "bridge": "vmbr0",
+                "firewall": false,
+                "link_down": false,
+                "macaddr": "62:9D:43:7B:D4:9D",
+                "model": "virtio",
+                "mtu": 0,
+                "queues": 0,
+                "rate": 0,
+                "tag": -1
+              }
+            ],
+            "numa": false,
+            "onboot": false,
+            "os_network_config": null,
+            "os_type": "cloud-init",
+            "pool": "",
+            "protection": false,
+            "pxe": null,
+            "qemu_os": "other",
+            "reboot_required": false,
+            "scsihw": "virtio-scsi-pci",
+            "searchdomain": null,
+            "serial": [
+              {
+                "id": 0,
+                "type": "socket"
+              }
+            ],
+            "skip_ipv4": false,
+            "skip_ipv6": false,
+            "smbios": [
+              {
+                "family": "",
+                "manufacturer": "",
+                "product": "",
+                "serial": "",
+                "sku": "",
+                "uuid": "8e930156-178f-43ce-82db-b1e9b34d274f",
+                "version": ""
+              }
+            ],
+            "sockets": 1,
+            "ssh_forward_ip": null,
+            "ssh_host": "192.168.1.7",
+            "ssh_port": "22",
+            "ssh_private_key": null,
+            "ssh_user": null,
+            "sshkeys": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFX6KQ9N5ZMWOD4/pVfbyaPdVobcx0xBadMA2OhR/EbS nekoneki@nekonekis-MBP\n",
+            "startup": "",
+            "tablet": true,
+            "tags": "",
+            "target_node": "machine-1",
+            "target_nodes": null,
+            "timeouts": null,
+            "unused_disk": [],
+            "usb": [],
+            "vcpus": 0,
+            "vga": [],
+            "vm_state": "running",
+            "vmid": 811
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "ssh_private_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "cipassword"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWZhdWx0IjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "module": "module.microk8s-node-3",
+      "mode": "managed",
+      "type": "proxmox_vm_qemu",
+      "name": "vm-instance",
+      "provider": "module.microk8s-node-3.provider[\"registry.terraform.io/telmate/proxmox\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "additional_wait": 5,
+            "agent": 1,
+            "agent_timeout": null,
+            "args": "",
+            "automatic_reboot": true,
+            "balloon": 0,
+            "bios": "seabios",
+            "boot": "order=scsi0",
+            "bootdisk": "",
+            "ci_wait": null,
+            "cicustom": null,
+            "cipassword": "4355",
+            "ciupgrade": false,
+            "ciuser": "nekoneki",
+            "clone": "ubuntu-20.04-template",
+            "clone_wait": 10,
+            "cores": 2,
+            "cpu": "host",
+            "default_ipv4_address": "192.168.1.206",
+            "default_ipv6_address": "",
+            "define_connection_info": true,
+            "desc": "microk8s-node-3",
+            "disk": [],
+            "disks": [
+              {
+                "ide": [
+                  {
+                    "ide0": [],
+                    "ide1": [],
+                    "ide2": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [
+                          {
+                            "storage": "local-lvm"
+                          }
+                        ],
+                        "disk": [],
+                        "passthrough": []
+                      }
+                    ],
+                    "ide3": []
+                  }
+                ],
+                "sata": [],
+                "scsi": [
+                  {
+                    "scsi0": [
+                      {
+                        "cdrom": [],
+                        "cloudinit": [],
+                        "disk": [
+                          {
+                            "asyncio": "",
+                            "backup": true,
+                            "cache": "writeback",
+                            "discard": false,
+                            "emulatessd": false,
+                            "format": "raw",
+                            "id": 0,
+                            "iops_r_burst": 0,
+                            "iops_r_burst_length": 0,
+                            "iops_r_concurrent": 0,
+                            "iops_wr_burst": 0,
+                            "iops_wr_burst_length": 0,
+                            "iops_wr_concurrent": 0,
+                            "iothread": false,
+                            "linked_disk_id": -1,
+                            "mbps_r_burst": 0,
+                            "mbps_r_concurrent": 0,
+                            "mbps_wr_burst": 0,
+                            "mbps_wr_concurrent": 0,
+                            "readonly": false,
+                            "replicate": true,
+                            "serial": "",
+                            "size": "32G",
+                            "storage": "local-lvm",
+                            "wwn": ""
+                          }
+                        ],
+                        "passthrough": []
+                      }
+                    ],
+                    "scsi1": [],
+                    "scsi10": [],
+                    "scsi11": [],
+                    "scsi12": [],
+                    "scsi13": [],
+                    "scsi14": [],
+                    "scsi15": [],
+                    "scsi16": [],
+                    "scsi17": [],
+                    "scsi18": [],
+                    "scsi19": [],
+                    "scsi2": [],
+                    "scsi20": [],
+                    "scsi21": [],
+                    "scsi22": [],
+                    "scsi23": [],
+                    "scsi24": [],
+                    "scsi25": [],
+                    "scsi26": [],
+                    "scsi27": [],
+                    "scsi28": [],
+                    "scsi29": [],
+                    "scsi3": [],
+                    "scsi30": [],
+                    "scsi4": [],
+                    "scsi5": [],
+                    "scsi6": [],
+                    "scsi7": [],
+                    "scsi8": [],
+                    "scsi9": []
+                  }
+                ],
+                "virtio": []
+              }
+            ],
+            "efidisk": [],
+            "force_create": false,
+            "force_recreate_on_change_of": null,
+            "full_clone": true,
+            "hagroup": "",
+            "hastate": "",
+            "hostpci": [],
+            "hotplug": "network,disk,usb",
+            "id": "machine-1/qemu/812",
+            "ipconfig0": "ip=dhcp",
+            "ipconfig1": null,
+            "ipconfig10": null,
+            "ipconfig11": null,
+            "ipconfig12": null,
+            "ipconfig13": null,
+            "ipconfig14": null,
+            "ipconfig15": null,
+            "ipconfig2": null,
+            "ipconfig3": null,
+            "ipconfig4": null,
+            "ipconfig5": null,
+            "ipconfig6": null,
+            "ipconfig7": null,
+            "ipconfig8": null,
+            "ipconfig9": null,
+            "kvm": true,
+            "linked_vmid": 0,
+            "machine": "",
+            "memory": 4096,
+            "name": "microk8s-node-3",
+            "nameserver": null,
+            "network": [
+              {
+                "bridge": "vmbr0",
+                "firewall": false,
+                "link_down": false,
+                "macaddr": "E6:F3:D0:27:13:EE",
+                "model": "virtio",
+                "mtu": 0,
+                "queues": 0,
+                "rate": 0,
+                "tag": -1
+              }
+            ],
+            "numa": false,
+            "onboot": false,
+            "os_network_config": null,
+            "os_type": "cloud-init",
+            "pool": "",
+            "protection": false,
+            "pxe": null,
+            "qemu_os": "other",
+            "reboot_required": false,
+            "scsihw": "virtio-scsi-pci",
+            "searchdomain": null,
+            "serial": [
+              {
+                "id": 0,
+                "type": "socket"
+              }
+            ],
+            "skip_ipv4": false,
+            "skip_ipv6": false,
+            "smbios": [
+              {
+                "family": "",
+                "manufacturer": "",
+                "product": "",
+                "serial": "",
+                "sku": "",
+                "uuid": "c4374525-1396-46f9-9cb0-101df15a0ec9",
+                "version": ""
+              }
+            ],
+            "sockets": 1,
+            "ssh_forward_ip": null,
+            "ssh_host": "192.168.1.206",
+            "ssh_port": "22",
+            "ssh_private_key": null,
+            "ssh_user": null,
+            "sshkeys": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFX6KQ9N5ZMWOD4/pVfbyaPdVobcx0xBadMA2OhR/EbS nekoneki@nekonekis-MBP\n",
+            "startup": "",
+            "tablet": true,
+            "tags": "",
+            "target_node": "machine-1",
+            "target_nodes": null,
+            "timeouts": null,
+            "unused_disk": [],
+            "usb": [],
+            "vcpus": 0,
+            "vga": [],
+            "vm_state": "running",
+            "vmid": 812
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "ssh_private_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "cipassword"
+              }
+            ]
+          ],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWZhdWx0IjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
