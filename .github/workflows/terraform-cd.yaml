@@ -1,40 +1,37 @@
-name: Terraform CI/CD
+name: Terraform Apply
 
 on:
   push:
     branches:
       - main
-      - master
-  workflow_dispatch:
 
 jobs:
-  discover:
+  apply-and-commit-state:
     runs-on: self-hosted
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: set-matrix
-        run: python3 -c 'import os, json; print("matrix=" + json.dumps([f"envs/shared/{d}" for d in os.listdir("envs/shared") if os.path.isfile(f"envs/shared/{d}/main.tf")]))' >> $GITHUB_OUTPUT
 
-  deploy:
-    needs: discover
-    runs-on: self-hosted
-    strategy:
-      fail-fast: false
-      matrix:
-        dir: ${{ fromJson(needs.discover.outputs.matrix) }}
-    defaults:
-      run:
-        working-directory: ${{ matrix.dir }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_wrapper: false
 
-      - run: terraform init
+      - name: Terraform Init and Apply
+        run: |
+          for dir in envs/shared/*/; do
+            if [ -f "$dir/main.tf" ]; then
+              cd "$dir"
+              terraform init
+              terraform apply -auto-approve
+              cd ../../../
+            fi
+          done
 
-      - run: terraform apply -auto-approve
+      - name: Commit and push state
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add '**/*.tfstate' '**/*.tfstate.backup'
+          git commit -m "chore: update terraform state [skip ci]" || echo "No state changes to commit"
+          git push
 
