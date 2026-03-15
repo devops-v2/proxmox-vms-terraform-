@@ -22,7 +22,7 @@ module "backstage" {
   cores           = 8
   memory          = 8192
   scsi0_disk_size = 20
-  vmid            = 9002
+  vmid            = 9003
   ip_address      = "192.168.1.209"
   cidr            = 24
   gateway         = "192.168.1.1"
