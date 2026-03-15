@@ -8,13 +8,14 @@ terraform {
 }
 
 resource "proxmox_vm_qemu" "ubuntu-vm" {
-  name        = var.name
-  description = var.description
-  target_node = var.target_node
-  vmid        = var.vmid
-  clone       = "ubuntu-20.04-template"
-  agent       = 1
-  os_type     = "cloud-init"
+  name          = var.name
+  description   = var.description
+  target_node   = var.target_node
+  vmid          = var.vmid
+  clone         = "ubuntu-20.04-template"
+  agent         = 1
+  os_type       = "cloud-init"
+  agent_timeout = 10
 
   cpu {
     type    = "host"
