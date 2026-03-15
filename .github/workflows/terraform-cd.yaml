@@ -1,37 +1,58 @@
-name: Terraform Apply
+name: Terraform CI/CD
 
 on:
   push:
     branches:
       - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: terraform-apply
+  cancel-in-progress: false
 
 jobs:
-  apply-and-commit-state:
+  discover:
     runs-on: self-hosted
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          python3 -c 'import os, json; dirs = [f"envs/shared/{d}" for d in os.listdir("envs/shared") if os.path.isdir(f"envs/shared/{d}") and os.path.isfile(f"envs/shared/{d}/main.tf")]; print("matrix=" + json.dumps(dirs))' >> $GITHUB_OUTPUT
 
+  deploy:
+    needs: discover
+    runs-on: self-hosted
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        dir: ${{ fromJson(needs.discover.outputs.matrix) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.dir }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
 
-      - name: Terraform Init and Apply
-        run: |
-          for dir in envs/shared/*/; do
-            if [ -f "$dir/main.tf" ]; then
-              cd "$dir"
-              terraform init
-              terraform apply -auto-approve
-              cd ../../../
-            fi
-          done
+      - run: terraform init
 
-      - name: Commit and push state
+      - run: terraform apply -auto-approve
+
+      - name: Sync State Back to Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add '**/*.tfstate' '**/*.tfstate.backup'
-          git commit -m "chore: update terraform state [skip ci]" || echo "No state changes to commit"
-          git push
+          git add *.tfstate
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update state for ${GITHUB_SHA::7} [skip ci]" && git pull --rebase && git push)
 
