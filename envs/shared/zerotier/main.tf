@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "3.0.1-rc4"
+      version = "3.0.2-rc07"
     }
   }
 }
@@ -15,16 +15,13 @@ provider "proxmox" {
 }
 
 module "zerotier" {
-  source          = "../../../modules/ubuntu_vm"
+  source = "../../../modules/vm"
+
   name            = "zerotier"
-  desc            = "zerotier"
+  description     = "zerotier"
+  template_name   = "debian-base"
   target_node     = "machine-1"
   cores           = 4
   memory          = 4096
   scsi0_disk_size = 20
-  vmid            = 300
-  ip_address      = "192.168.1.105"
-  cidr            = 24
-  gateway         = "192.168.1.1"
 }
-
